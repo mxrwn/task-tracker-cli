@@ -21,13 +21,12 @@ const updateTask = (id) => {
 }
 
 const deleteTask = async (id) => {
-  console.log(id);
-  if (id > -1) { // only splice array when item is found
-    tasks.splice(id, 1); // 2nd parameter means remove one item only
-  }
-  console.log("tasks", t);
+  let found = tasks.find(task => task.id == id);
+  console.log(found);
+  if(!found) return console.log("Task does not exist"); 
+  console.log(tasks.splice(tasks.indexOf(found), 1));
+  console.log("tasks", tasks);
   await fs.writeFileSync('./src/tasks.json', JSON.stringify(tasks));
-  console.log(tasks);
 }
 
 const createTask = (id, description) => {
