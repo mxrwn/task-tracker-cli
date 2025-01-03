@@ -26,9 +26,9 @@ npm install
 
 To start the application ,use the following command:
 
-  ```bash
-  npm start
-  ```
+```bash
+npm start
+```
 ### Commands
 
 1. Add a task
