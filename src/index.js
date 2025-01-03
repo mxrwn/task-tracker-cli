@@ -3,10 +3,12 @@ import fs from 'fs';
 
 const tasks = JSON.parse(await fs.readFileSync('./src/tasks.json', 'utf-8'));
 
-const [action, pointer, ...args] = process.argv.slice(2);
+const [action, pointer, status, ...args] = process.argv.slice(2);
 
-const readTasks = () => {
-  console.log(tasks)
+const readTasks = (filter) => {
+  if(!filter) return console.log(tasks);
+  const filteredTasks = tasks.filter(tasks => tasks.status === filter);
+  console.log(filteredTasks)
 }
 
 const addTask = async (text) => {
@@ -16,15 +18,20 @@ const addTask = async (text) => {
   console.log(task);
 }
 
-const updateTask = (id) => {
-
+const updateTask = async (id, status) => {
+  let found = tasks.find(task => task.id == id);
+  if(!found) return console.log("Task does not exist"); 
+  found.status = status;
+  tasks.splice(tasks.indexOf(found), 1);
+  tasks.push(found);
+  await fs.writeFileSync('./src/tasks.json', JSON.stringify(tasks));
+  console.log(tasks);
 }
 
 const deleteTask = async (id) => {
   let found = tasks.find(task => task.id == id);
-  console.log(found);
   if(!found) return console.log("Task does not exist"); 
-  console.log(tasks.splice(tasks.indexOf(found), 1));
+  tasks.splice(tasks.indexOf(found), 1);
   console.log("tasks", tasks);
   await fs.writeFileSync('./src/tasks.json', JSON.stringify(tasks));
 }
@@ -45,7 +52,7 @@ if(action === 'add') {
 }
 
 if(action === 'update') {
-
+  updateTask(pointer, status);
 }
 
 if(action === 'delete') {
@@ -53,5 +60,5 @@ if(action === 'delete') {
 }
 
 if(action === 'list') {
-  readTasks();
+  readTasks(pointer);
 }
