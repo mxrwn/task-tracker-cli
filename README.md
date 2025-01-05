@@ -60,7 +60,7 @@ npm start delete {task_id}
 
 ## Contributing
 
-This is an early version and made thanks to the proposition to the backend roadmap on roadmap.sh and contributions are welcome! If you would like to contribute, please fork the repository and create a pull request.
+This is an early version and made thanks to the backend roadmap on roadmap.sh (https://roadmap.sh/projects/task-tracker) and contributions are welcome! If you would like to contribute, please fork the repository and create a pull request.
 
 ## License
 
