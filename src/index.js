@@ -22,6 +22,7 @@ const updateTask = async (id, status) => {
   let found = tasks.find(task => task.id == id);
   if(!found) return console.log("Task does not exist"); 
   found.status = status;
+  found.updatedAt = Date.now();
   tasks.splice(tasks.indexOf(found), 1);
   tasks.push(found);
   await fs.writeFileSync('./src/tasks.json', JSON.stringify(tasks));

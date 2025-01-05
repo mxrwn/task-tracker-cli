@@ -1,16 +1,17 @@
 {
-  "name": "task-tracker-cli",
+  "name": "@mxrwn/task-tracker-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "Task Tracker CLI is a simple command-line application for managing tasks. Built using Node.js, it allows you to add, list, update, and delete tasks with ease.\r ## Installation",
   "main": "src/index.js",
   "type": "module",
   "bin": {
-    "task-tracker": "npm start ./src/index.js"
+    "task-tracker": "./src/index.js"
   },
   "scripts": {
     "start": "node src/index.js",
     "test": "jest"
   },
   "author": "mx",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {}
 }
